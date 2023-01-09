@@ -1,36 +1,23 @@
-import { useState, useEffect } from "react";
+
 import BlogList from "./blogList";
+import useFetch from "./usefetch";
 
 const Home = () => {
-    const [blogs, setBlogs] = useState([
-        { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1},
-        { title: 'Welsome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2},
-        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'marty', id: 3},
-        { title: 'Mobile App Tutorials', body: 'lorem ipsum...', author: 'mario', id: 4}
-    ]);
-
-    const [name, setName] = useState('mario');
-
-    const handleDelete = (id) => {
-        // deleting blogs in list
-        const newBlogs = blogs.filter(blog => 
-            blog.id !== id);
-
-        setBlogs(newBlogs);
-    }
-
-    useEffect(() => {
-        console.log('use effect ran');
-        console.log(name);
-    }, [name]);
+    const { data: blogs, isPending, error } = useFetch('http://localhost:8000/blogs');
 
     return (  
         <div className="home">
-            {/* Parsing props into the reusable component */}
-            <BlogList blogs={blogs} title="All Blogs!" handleDelete={handleDelete}/>
+            {/* Parsing props into the reusable component e.g "blogs ={blogs}"*/}
+
+            {/* Conditional statement where if blogs is null, nothing is returned but if something is there, the second part of the statement is fullfilled */}
+
+            {/* Code for if loading is present then show the div statement */}
+
+            {/* error is printed to the document */}
+            {error && <div>{ error }</div>}
+            {isPending && <div>Loading...</div> }
+            {blogs && <BlogList blogs={blogs} title="All Blogs!"/>}
             
-            <button onClick={()=>setName}>Change name</button>
-            <p>{name}</p>
         </div>
     );
 }
