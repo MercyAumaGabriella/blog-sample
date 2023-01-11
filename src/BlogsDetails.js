@@ -1,7 +1,20 @@
 import { useHistory, useParams } from "react-router-dom";
 import useFetch from "./usefetch";
+import PopUpDelete from "./popUp";
+import { useState } from "react";
 
 const BlogsDetails = () => {
+    // Show the popUp button
+    const [popUp, showPopUp] = useState(false);
+
+    const popUpFunction = () => {
+        if(popUp === false){
+            showPopUp(true);
+        } else {
+            showPopUp(false);
+        }
+        
+    }
 
     // allows us to grab parameters from the urls
     const { id } = useParams();
@@ -26,6 +39,8 @@ const BlogsDetails = () => {
             {/* Loading error if any */}
             { error && <div>{error}</div> }
 
+            { popUp && <PopUpDelete /> }
+
             { blog && (
                 <article>
                     <h2>{ blog.title }</h2>
@@ -33,7 +48,7 @@ const BlogsDetails = () => {
 
                     <div>{ blog.body }</div>
 
-                    <button onClick={handleDelete}> delete </button>
+                    <button onClick={popUpFunction}> delete </button>
                 </article>
             ) }
         </div>
