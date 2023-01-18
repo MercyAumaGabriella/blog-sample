@@ -7,6 +7,7 @@ const PopUpDelete = () => {
                 <p>Are you sure you would like to delete this blog?</p>
                 <button>Yes</button>
                 <button>No</button>
+                <button>Cancel</button>
             </div>
         </div>
     );
