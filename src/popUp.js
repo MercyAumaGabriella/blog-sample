@@ -1,3 +1,10 @@
+import useState from "react";
+
+const [Popp, showPopp] = useState(false);
+
+const showPoppUp = () => {
+    showPopp(true);
+}
 
 const PopUpDelete = () => {
     return ( 
@@ -6,8 +13,7 @@ const PopUpDelete = () => {
                 <h2>WARNING</h2>
                 <p>Are you sure you would like to delete this blog?</p>
                 <button>Yes</button>
-                <button>No</button>
-                <button>Cancel</button>
+                <button onClick={showPoppUp}>No</button>
             </div>
         </div>
     );
