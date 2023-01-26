@@ -1,5 +1,5 @@
 import useState from "react";
-import { useParams , useHistory} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import useFetch from "./usefetch";
 
 const [Popp, showPopp] = useState(false);
@@ -12,13 +12,11 @@ const {id} = useParams();
 
 const {data:blog} = useFetch('http://localhost:8000/blogs/' + id);
 
-const history = useHistory();
-
 const goingToDelete = () => {
     fetch('http://localhost:8000/blogs/' + blog.id, {
         method: 'DELETE'
     }). then(() => {
-        history.push('/');
+        // Write Code Here
     })
 
 }
