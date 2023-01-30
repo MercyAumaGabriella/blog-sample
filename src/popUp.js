@@ -2,10 +2,10 @@ import useState from "react";
 import { useParams} from "react-router-dom";
 import useFetch from "./usefetch";
 
-const [Popp, showPopp] = useState(false);
+const [Popp, showPopp] = useState(true);
 
 const showPoppUp = () => {
-    showPopp(true);
+    showPopp(false);
 }
 
 const {id} = useParams();
@@ -16,7 +16,9 @@ const goingToDelete = () => {
     fetch('http://localhost:8000/blogs/' + blog.id, {
         method: 'DELETE'
     }). then(() => {
-        // Write Code Here
+        if (Popp === true){
+            showPopp(false);
+        }
     })
 
 }
